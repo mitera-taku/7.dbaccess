@@ -1,3 +1,4 @@
+package test;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,7 +15,7 @@ public class EX06 {
 
         try {
             con = DriverManager.getConnection(url, user, password);
-            sql = "DELETE FROM members";
+            sql = "DROP FROM members";
             pstmt = con.prepareStatement(sql);
             int numOfUpdate = pstmt.executeUpdate();
             System.out.println(numOfUpdate + "件のデータを操作しました");

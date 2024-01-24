@@ -1,10 +1,11 @@
+package test;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
-public class EX04 {
+public class EX05 {
     public static void main(String[] args) {
-              String url= "jdbc:postgresql://localhost:5432/student";
+        String url= "jdbc:postgresql://localhost:5432/student";
         String user = "postgres";
         String password = "postgres";
 
@@ -14,7 +15,7 @@ public class EX04 {
 
         try {
             con = DriverManager.getConnection(url, user, password);
-            sql = "UPDATE members SET name = '三寺 拓', birth_day = '1997-08-28', gender = '男' WHERE color_id = 1;";
+            sql = "DELETE FROM members where color_id = 1 OR id = 2;";
             pstmt = con.prepareStatement(sql);
             int numOfUpdate = pstmt.executeUpdate();
             System.out.println(numOfUpdate + "件のデータを操作しました");
@@ -37,4 +38,3 @@ public class EX04 {
         }
     }
 }
-        

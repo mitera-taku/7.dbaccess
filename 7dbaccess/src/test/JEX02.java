@@ -1,10 +1,12 @@
+package test;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
-public class JEX01 {
+public class JEX02 {
     public static void main(String[] args) {
-        String url= "jdbc:postgresql://localhost:5432/student";
+          String url= "jdbc:postgresql://localhost:5432/student";
         String user = "postgres";
         String password = "postgres";
 
@@ -14,20 +16,17 @@ public class JEX01 {
 
         try {
             con = DriverManager.getConnection(url, user, password);
-            sql = "DROP TABLE IF EXISTS colors;" +
-                "CREATE TABLE colors(" +
-                "id INTEGER PRIMARY KEY," +
-                "name text " +
-                ");";
+            sql = "INSERT INTO colors(id,name)" +
+             "VALUES(1,'blue'),"+
+             "(2,'red'),(3,'green'),"+
+             "(4,'yellow'),(5,'purple'),(6,'orange');";
+            
             pstmt = con.prepareStatement(sql);
             int numOfUpdate = pstmt.executeUpdate();
             System.out.println(numOfUpdate + "件のデータを操作しました");
-        } catch (Exception ex) {
-            System.err.println("SQL = " + sql);
-            ex.printStackTrace();
-    }
-
-        finally{
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
             try {
                 if(con != null){
                     con.close();
@@ -35,9 +34,12 @@ public class JEX01 {
                 if(pstmt != null){
                     pstmt.close();
                 }
-            } catch (Exception e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
+                // TODO: handle exception
             }
+
         }
+
     }
 }

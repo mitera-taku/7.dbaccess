@@ -1,11 +1,11 @@
+package test;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
-public class JEX02 {
+public class EX04 {
     public static void main(String[] args) {
-          String url= "jdbc:postgresql://localhost:5432/student";
+        String url= "jdbc:postgresql://localhost:5432/student";
         String user = "postgres";
         String password = "postgres";
 
@@ -15,17 +15,16 @@ public class JEX02 {
 
         try {
             con = DriverManager.getConnection(url, user, password);
-            sql = "INSERT INTO colors(id,name)" +
-             "VALUES(1,'blue'),"+
-             "(2,'red'),(3,'green'),"+
-             "(4,'yellow'),(5,'purple'),(6,'orange');";
-            
+            sql = "UPDATE members SET name = '三寺 拓', birth_day = '1997-08-28', gender = '男' WHERE color_id = 1;";
             pstmt = con.prepareStatement(sql);
             int numOfUpdate = pstmt.executeUpdate();
             System.out.println(numOfUpdate + "件のデータを操作しました");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
+        } catch (Exception ex) {
+            System.err.println("SQL = " + sql);
+            ex.printStackTrace();
+    }
+
+        finally{
             try {
                 if(con != null){
                     con.close();
@@ -33,12 +32,10 @@ public class JEX02 {
                 if(pstmt != null){
                     pstmt.close();
                 }
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
-                // TODO: handle exception
             }
-
         }
-
     }
 }
+        

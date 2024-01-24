@@ -1,0 +1,7 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "7dbaccess/lib/postgresql-42.7.1.jar"
+    ],
+    "java.debug.settings.onBuildFailureProceed": true
+}
