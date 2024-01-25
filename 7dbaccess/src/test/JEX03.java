@@ -68,6 +68,7 @@ public class JEX03 {
             
             pstmt = con.prepareStatement(sql.toString());
             rs = pstmt.executeQuery();
+            
 
             while(rs.next()){
                 String name = rs.getString("m_name");

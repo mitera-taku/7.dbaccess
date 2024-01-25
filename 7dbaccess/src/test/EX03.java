@@ -10,10 +10,10 @@ public class EX03 {
         String user = "postgres";
         String password = "postgres";
 
-        Connection con = null;
-        PreparedStatement pstmt = null;
-        String sql = null;
-        ResultSet rs = null;
+        Connection con = null;//接続
+        PreparedStatement pstmt = null;//準備
+        String sql = null;//命令文
+        ResultSet rs = null;//結果表示
 
         try{
             con = DriverManager.getConnection(url,user,password);
